@@ -1,0 +1,34 @@
+{
+  "name": "bookstore-api",
+  "version": "1.0.0",
+  "description": "A simple bookstore REST API built with NodeJS and Express.",
+  "main": "./src/app.js",
+  "scripts": {
+    "start": "node ./src/app.js",
+    "dev": "nodemon ./src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/willy-r/bookstore-api.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "rest-api"
+  ],
+  "author": "willy-r",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/willy-r/bookstore-api/issues"
+  },
+  "homepage": "https://github.com/willy-r/bookstore-api#readme",
+  "dependencies": {
+    "consign": "^0.1.6",
+    "express": "^4.17.1",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
