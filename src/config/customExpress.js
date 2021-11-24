@@ -1,9 +1,7 @@
 const express = require('express');
 const consign = require('consign');
 
-const db = require('../infra/dbConn');
-
-const customExpress = () => {
+const customExpress = (db) => {
   const app = express();
   
   // Middlewares.

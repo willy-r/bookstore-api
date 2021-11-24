@@ -6,7 +6,9 @@ class Tables {
   }
 
   createTables() {
-    this._createBookTable();
+    this._db.serialize(() => {
+      this._createBookTable();
+    });
   }
 
   _createBookTable() {
