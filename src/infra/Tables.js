@@ -18,7 +18,24 @@ class Tables {
         return;
       }
 
-      console.log('Book table created (or already exists) successfully!');
+      console.log('The book table has been created (or already exists) successfully!');
+    });
+  }
+
+  populateTables() {
+    this._db.serialize(() => {
+      this._populateBookTable();
+    });
+  }
+
+  _populateBookTable() {
+    this._db.run(schemas.populateBookTable, (err) => {
+      if (err) {
+        console.log(`Error populating book table: ${err.message}`);
+        return;
+      }
+
+      console.log('The book table has been populated successfully!');
     });
   }
 }

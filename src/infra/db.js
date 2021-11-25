@@ -9,7 +9,7 @@ const createDatabase = (isTesting) => {
   let dbFilePath = 'db.sqlite3';
 
   if (isTesting) {
-    dbFilePath = 'db.test.sqlite3';
+    dbFilePath = './src/tests/db.test.sqlite3';
   }
 
   const dbFullFilePath = path.resolve(dbFilePath);
@@ -25,6 +25,10 @@ const createDatabase = (isTesting) => {
   // Creates tables if not exists.
   const tables = new Tables(db);
   tables.createTables();
+
+  if (isTesting) {
+    tables.populateTables();
+  }
 
   // Finishes connection with database when CTRL + C.
   process.on('SIGINT', () => {
