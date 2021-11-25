@@ -3,7 +3,7 @@ const consign = require('consign');
 
 const createDatabase = require('../infra/db');
 
-const customExpress = (dbFilePath) => {
+const customExpress = (isTesting) => {
   const app = express();
   
   // Middlewares.
@@ -11,7 +11,7 @@ const customExpress = (dbFilePath) => {
   app.use(express.urlencoded({ extended: true }));
 
   // Database.
-  const db = createDatabase(dbFilePath);
+  const db = createDatabase(isTesting);
 
   // Routes.
   consign().include('./src/controllers').into(app, db);

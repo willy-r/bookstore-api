@@ -16,8 +16,8 @@ class Book {
       throw new Error('ISBN is mandatory');
     }
 
-    if (ISBN.length > 13) {
-      throw new Error('ISBN should have at least 13 characters');
+    if (ISBN.length !== 10 && ISBN.length !== 13) {
+      throw new Error('ISBN should have 10 or 13 characters');
     }
 
     return ISBN;
