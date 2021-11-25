@@ -14,7 +14,7 @@ class Tables {
   _createBookTable() {
     this._db.run(schemas.createBookTable, (err) => {
       if (err) {
-        console.log(err.message);
+        console.log(`Error creating book table: ${err.message}`);
         return;
       }
 

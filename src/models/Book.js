@@ -1,13 +1,12 @@
 class Book {
-  constructor(ISBN, title, description, imgUrl, topic, posAvaliations, price, pubYear, compId, authorId) {
+  constructor(ISBN, title, description, imgUrl, price, pubYear, pages, compId, authorId) {
     this.ISBN = this._verifyISBN(ISBN);
     this.title = title;
     this.description = description;
     this.imgUrl = imgUrl; // TODO: verify: valid URL
-    this.topic = topic;
-    this.posAvaliations = posAvaliations;
     this.price = price; // TODO: verify: is valid price in the format 00.00
     this.pubYear = pubYear; // TODO: verify: is valid year in the format YYYY
+    this.pages = pages;
     this.compId = compId;
     this.authorId = authorId;
   }
@@ -18,7 +17,7 @@ class Book {
     }
 
     if (ISBN.length > 13) {
-      throw new Error('ISBN should have 13 characters');
+      throw new Error('ISBN should have at least 13 characters');
     }
 
     return ISBN;

@@ -5,9 +5,8 @@ const createBookTable =  `
     titulo VARCHAR(255) NOT NULL,
     descricao TEXT NOT NULL,
     url_img VARCHAR(255),
-    tema VARCHAR(255) NOT NULL,
-    avaliacoes_pos INTEGER NOT NULL,
     preco FLOAT(4, 2) NOT NULL,
+    paginas INTEGER NOT NULL,
     ano_publicacao YEAR NOT NULL,
     id_editora INTEGER NOT NULL,
     autor_id INTEGER NOT NULL
