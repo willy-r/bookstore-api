@@ -8,7 +8,7 @@ A simple bookstore REST API built with NodeJS and Express.
 
 | Method | Route | Description |
 | ------ | ----- | ----------- |
-| TODO | TODO | TODO |
+| GET | /api/books | Gets all books |
 
 
 ## Run Locally
