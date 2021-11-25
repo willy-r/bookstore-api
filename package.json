@@ -1,7 +1,7 @@
 {
   "name": "bookstore-api",
   "version": "1.0.0",
-  "description": "A simple bookstore REST API built with NodeJS and Express.",
+  "description": "A bookstore API REST built with NodeJS and Express.",
   "main": "./src/app.js",
   "scripts": {
     "start": "node ./src/app.js",

@@ -1,14 +1,17 @@
 # Bookstore API
 
-A simple bookstore REST API built with NodeJS and Express.
+A bookstore API REST built with NodeJS and Express (Book entity).
 
-## Routes API
 
-### Routes to book entity
+## API Routes Reference
+
+To see the full **API Reference**, access the [wiki](#todo) of the project.
+
+### Routes (Book entity)
 
 | Method | Route | Description |
 | ------ | ----- | ----------- |
-| GET | /api/books | Gets all books |
+| GET | `/api/books` | Gets all books |
 
 
 ## Run Locally
@@ -38,6 +41,23 @@ npm run dev
 ```
 
 
-## Autor
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+npm test
+```
+
+
+## Group 10
+
+- [William Rodrigues](https://github.com/willy-r) (Book entity)
+- [Gabriela Costa](https://github.com/gabrielaalvescosta) (Author entity)
+- [Ana Karolina](https://github.com/kasvrol) (User entity)
+- [Aiala Priscila](#todo) (Publishing Company entity)
+
+
+## Author
 
 - [William Rodrigues](https://github.com/willy-r)
