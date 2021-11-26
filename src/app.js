@@ -1,10 +1,8 @@
 const customExpress = require('./config/customExpress');
 
-const app = customExpress();
+// Creates the app passing false as argument,
+// meaning that should not create the test db.
+const app = customExpress(false);
 const PORT = process.env.PORT || 3000;
-
-app.get('/', (_, res) => {
-  res.send('It worked!');
-});
 
 app.listen(PORT, () => console.log(`Server running at: http://localhost:${PORT}`));
