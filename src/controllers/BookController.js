@@ -1,4 +1,5 @@
 const BookDAO = require('../DAO/BookDAO');
+const Book = require('../models/Book');
 
 const BookController = (app, db) => {
   const DAO = new BookDAO(db);
@@ -42,6 +43,44 @@ const BookController = (app, db) => {
       res.status(500).json({
         error: true,
         msg: errObj.message,
+      });
+    }
+  });
+
+  app.post('/api/book', async (req, res) => {
+    const body = req.body;
+
+    try {
+      // Try to create an instance of book.
+      const newBook = new Book(...Object.values(body));
+
+      try {
+        const ISBN = await DAO.getBookISBN(newBook.ISBN);
+
+        if (ISBN) {
+          res.status(400).json({
+            error: true,
+            msg: `The book with ISBN ${ISBN} already exists`,
+          });
+          return;
+        }
+
+        const infoCreatedBook = await DAO.createBook(newBook);
+
+        res.status(201).json({
+          error: false,
+          info: infoCreatedBook,
+        });
+      } catch (err) {
+        res.status(500).json({
+          error: false,
+          msg: err.message,
+        });
+      }
+    } catch (err) {
+      res.status(400).json({
+        error: true,
+        msg: err.message,
       });
     }
   });

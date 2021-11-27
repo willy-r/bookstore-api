@@ -35,6 +35,49 @@ class BookDAO {
       });
     });
   }
+
+  getBookISBN(ISBN) {
+    return new Promise((resolve, reject) => {
+      const query = `
+        SELECT ISBN FROM livro
+        WHERE ISBN = ?;
+      `;
+
+      this._db.get(query, ISBN, (err, row) => {
+        if (err) {
+          reject(new Error(`Error consulting database: ${err.message}`));
+          return;
+        }
+
+        resolve(row?.ISBN);
+      });
+    });
+  }
+
+  createBook(book) {
+    return new Promise((resolve, reject) => {
+      const query = `
+        INSERT INTO livro
+          (ISBN, titulo, descricao, url_img, preco, paginas, ano_publicacao, id_editora, id_autor)
+        VALUES
+          (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ;
+      `;
+      const params = Object.values(book);
+
+      this._db.run(query, params, function(err) {
+        if (err) {
+          reject(new Error(`Error creating new book: ${err.message}`));
+          return;
+        }
+
+        resolve({
+          bookId: this.lastID,
+          insertedValues: book,
+        });
+      });
+    });
+  }
 }
 
 module.exports = BookDAO;
