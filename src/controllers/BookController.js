@@ -13,7 +13,7 @@ const BookController = (app, db) => {
         books: books,
       });
     } catch (errObj) {
-      res.status(400).json({
+      res.status(errObj.statusCode).json({
         error: true,
         msg: errObj.message,
       });

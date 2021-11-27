@@ -9,7 +9,10 @@ class BookDAO {
 
       this._db.all(query, (err, rows) => {
         if (err) {
-          reject(new Error(`Error on consulting database: ${err}`));
+          reject({
+            statusCode: 500,
+            message: `Error consulting database: ${err}`,
+          });
           return;
         }
 
