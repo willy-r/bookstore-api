@@ -7,7 +7,7 @@ afterAll(() => {
 });
 
 describe('Tests GET methods', () => {
-  describe('Endpoint /api/books', () => {
+  describe('Endpoint /api/book/all', () => {
     test('Should return 9 books', async () => {
       const res = await request(app).get('/api/books');
       
