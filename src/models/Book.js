@@ -92,12 +92,6 @@ class Book {
     if (typeof price !== 'number' || price <= 0) {
       throw new Error('preco must be a valid number greater than 0');
     }
-
-    const regex = /\d{2}\.\d{2}/;
-
-    if (!regex.test(price.toString())) {
-      throw new Error('preco must be in the format 12.34');
-    }
   }
 
   _verifyPages(pages) {
