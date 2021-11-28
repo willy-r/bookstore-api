@@ -49,11 +49,11 @@ const BookController = (app, db) => {
 
   app.post('/api/book', async (req, res) => {
     const body = req.body;
-
+    
     try {
-      // Try to create an instance of book.
+      // Try to create an instance of Book.
       const newBook = new Book(...Object.values(body));
-
+      
       try {
         const ISBN = await DAO.getBookISBN(newBook.ISBN);
 
@@ -65,11 +65,13 @@ const BookController = (app, db) => {
           return;
         }
 
-        const infoCreatedBook = await DAO.createBook(newBook);
+        const createdBookId = await DAO.createBook(newBook);
+        const createdBook = await DAO.getBookById(createdBookId);
 
         res.status(201).json({
           error: false,
-          info: infoCreatedBook,
+          msg: 'Book was created successfully',
+          bookInfo: createdBook,
         });
       } catch (err) {
         res.status(500).json({

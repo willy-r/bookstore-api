@@ -11,7 +11,9 @@ To see the full **API Reference**, access the [wiki](#todo) of the project.
 
 | Method | Route | Description |
 | ------ | ----- | ----------- |
-| GET | `/api/books` | Gets all books |
+| **GET** | `/api/book/all` | Get all books |
+| **GET** | `/api/book/{id}` | Get the book based on the {id} |
+| **POST** | `/api/book` | Create a new book |
 
 
 ## Run Locally
@@ -43,7 +45,7 @@ npm run dev
 
 ## Running Tests
 
-To run tests, run the following command
+To run tests, run the following command:
 
 ```bash
 npm test

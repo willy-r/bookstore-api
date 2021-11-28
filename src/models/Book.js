@@ -1,7 +1,7 @@
 class Book {
-  constructor(ISBN, title, description, imgUrl, price, pubYear, pages, compId, authorId) {
+  constructor(ISBN, title, description, imgUrl, price, pages, pubYear, pubCompId, authorId) {
     // Verify data before assign attributes.
-    this._verifyData(ISBN, title, description, imgUrl, price, pubYear);
+    this._verifyData(ISBN, title, description, imgUrl, price, pages, pubYear, pubCompId, authorId);
 
     this.ISBN = ISBN;
     this.title = title;
@@ -10,16 +10,20 @@ class Book {
     this.price = price;
     this.pubYear = pubYear;
     this.pages = pages;
-    this.compId = compId;
+    this.pubCompId = pubCompId;
     this.authorId = authorId;
   }
 
-  _verifyData(ISBN, title, description, imgUrl, pubYear) {
+  _verifyData(ISBN, title, description, imgUrl, price, pages, pubYear, pubCompId, authorId) {
     this._verifyISBN(ISBN);
     this._verifyTitle(title);
     this._verifyDescription(description);
     this._verifyImgUrl(imgUrl);
+    this._verifyPrice(price);
+    this._verifyPages(pages);
     this._verifyPubYear(pubYear);
+    this._verifyPubCompId(pubCompId);
+    this._verifyAuthorId(authorId);
   }
 
   _verifyISBN(ISBN) {
@@ -45,8 +49,8 @@ class Book {
       throw new Error('titulo must be a valid string');
     }
 
-    if (title.length > 255) {
-      throw new Error('titulo must have at least 255 characters');
+    if (title.length > 50) {
+      throw new Error('titulo must have a maximum of 50 characters');
     }
   }
 
@@ -70,7 +74,7 @@ class Book {
     }
 
     if (imgUrl.length > 255) {
-      throw new Error('img_url must have at least 255 characters');
+      throw new Error('img_url must have a maximum of 255 characters');
     }
 
     const regex = /^(http(s)?):\/\/[^ "]+$/;
@@ -81,31 +85,37 @@ class Book {
   }
 
   _verifyPrice(price) {
-    if (typeof price === 'undefined' || price === null) {
+    if (price === undefined || price === null) {
       throw new Error('preco is mandatory');
     }
 
-    if (typeof price !== 'number' ) {
-      throw new Error('preco must be a valid number');
+    if (typeof price !== 'number' || price <= 0) {
+      throw new Error('preco must be a valid number greater than 0');
     }
 
-    if (price <= 0) {
-      throw new Error('preco must be a number greater than 0');
-    }
-
-    const regex = /\d{2}.\d{2}/;
+    const regex = /\d{2}\.\d{2}/;
 
     if (!regex.test(price.toString())) {
       throw new Error('preco must be in the format 12.34');
     }
   }
 
+  _verifyPages(pages) {
+    if (pages === undefined || pages === null) {
+      throw new Error('paginas is mandatory');
+    }
+
+    if (typeof pages !== 'number' || pages <= 0) {
+      throw new Error('paginas must be a valid number greater than 0');
+    }
+  }
+
   _verifyPubYear(pubYear) {
-    if (typeof pubYear === 'undefined' || pubYear === null) {
+    if (pubYear === undefined || pubYear === null) {
       throw new Error('ano_publicacao is mandatory');
     }
 
-    if (typeof pubYear !== 'number' ) {
+    if (typeof pubYear !== 'number' || pubYear <= 0) {
       throw new Error('ano_publicacao must be a valid number greater than 0');
     }
 
@@ -120,6 +130,26 @@ class Book {
 
     if (pubYear > yearNow) {
       throw new Error('ano_publicacao must not be in the future');
+    }
+  }
+
+  _verifyPubCompId(pubCompId) {
+    if (pubCompId === undefined || pubCompId === null) {
+      throw new Error('id_editora is mandatory');
+    }
+
+    if (typeof pubCompId !== 'number' || pubCompId <= 0) {
+      throw new Error('id_editora must be a valid number greater than 0');
+    }
+  }
+
+  _verifyAuthorId(authorId) {
+    if (authorId === undefined || authorId === null) {
+      throw new Error('id_autor is mandatory');
+    }
+
+    if (typeof authorId !== 'number' || authorId <= 0) {
+      throw new Error('id_autor must be a valid number greater than 0');
     }
   }
 }

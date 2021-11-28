@@ -71,10 +71,7 @@ class BookDAO {
           return;
         }
 
-        resolve({
-          bookId: this.lastID,
-          insertedValues: book,
-        });
+        resolve(this.lastID);
       });
     });
   }
