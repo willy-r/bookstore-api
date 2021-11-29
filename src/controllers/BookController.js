@@ -101,19 +101,19 @@ const BookController = (app, db) => {
         });
         return;
       }
-
-      // Updates only the values passed to the request.
-      const valuesToUpdate = Object.entries(book).slice(1).reduce((values, arrBook) => {
-        if (body[arrBook[0]]) {
-          values.push(body[arrBook[0]]);
-        } else {
-          values.push(arrBook[1]);
-        }
-        return values;
-      }, []);
       
       // Try to create an instance of Book.
-      const newBook = new Book(...valuesToUpdate);
+      const newBook = new Book(
+        body.ISBN ? body.ISBN : book.ISBN,
+        body.titulo ? body.titulo : book.titulo,
+        body.descricao ? body.descricao : book.descricao,
+        body.url_img ? body.url_img : book.url_img,
+        body.preco ? body.preco : book.preco,
+        body.paginas ? body.paginas : book.paginas,
+        body.ano_publicacao ? body.ano_publicacao : book.ano_publicacao,
+        book.id_editora,
+        book.id_autor,
+      );
 
       try {
         const ISBN = await DAO.getBookISBN(newBook.ISBN);
@@ -129,10 +129,19 @@ const BookController = (app, db) => {
         const updatedBookId = await DAO.updateBook(id, newBook);
         const updatedBook = await DAO.getBookById(updatedBookId);
 
-        res.status(201).json({
+        // Gets only the updated fields.
+        const updatedFields = Object.entries(updatedBook).filter((arrBook) => {
+          return body[arrBook[0]] === arrBook[1];
+        }).reduce((fields, arrBook) => {
+          fields[arrBook[0]] = arrBook[1];
+          return fields;
+        }, {});
+        
+        res.status(200).json({
           error: false,
           msg: 'Book was updated successfully',
-          updatedBook: updatedBook,
+          updatedFields: updatedFields,
+          bookId: updatedBookId,
         });
       } catch (err) {
         res.status(500).json({
