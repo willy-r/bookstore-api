@@ -8,8 +8,8 @@ class Book {
     this.description = description;
     this.imgUrl = imgUrl;
     this.price = price;
-    this.pubYear = pubYear;
     this.pages = pages;
+    this.pubYear = pubYear;
     this.pubCompId = pubCompId;
     this.authorId = authorId;
   }
@@ -116,7 +116,6 @@ class Book {
     const regex = /\d{4}/;
 
     if (!regex.test(pubYear.toString())) {
-      console.log(pubYear);
       throw new Error('ano_publicacao must be in the format YYYY');
     }
 

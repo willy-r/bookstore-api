@@ -11,9 +11,10 @@ To see the full **API Reference**, access the [wiki](#todo) of the project.
 
 | Method | Route | Description |
 | ------ | ----- | ----------- |
-| **GET** | `/api/book/all` | Get all books |
-| **GET** | `/api/book/{id}` | Get the book based on the {id} |
-| **POST** | `/api/book` | Create a new book |
+| **GET** | `/api/book/all` | Gets all books |
+| **GET** | `/api/book/{id}` | Gets the book by {id} |
+| **POST** | `/api/book` | Creates a new book |
+| **PATCH** | `/api/book/{id}` | Updates the book by {id} |
 
 
 ## Run Locally
