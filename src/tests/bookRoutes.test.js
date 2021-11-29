@@ -95,3 +95,23 @@ describe('Tests PATCH route', () => {
     });
   });
 });
+
+describe('Tests DELETE route', () => {
+  describe('Endpoint /api/book/{id}', () => {
+    test('Should delete book with id=1 successfully', async () => {
+      const res = await request(app).delete('/api/book/1');
+
+      expect(res.statusCode).toBe(200);
+      expect(res.body.error).toBe(false);
+      expect(res.body.bookId).toBe(1);
+    });
+
+    test('Should return status code 404 for book that does not exists', async () => {
+      const res = await request(app).delete('/api/book/0');
+      
+      expect(res.statusCode).toBe(404);
+      expect(res.body).toHaveProperty('error');
+      expect(res.body.error).toBe(true);
+    });
+  });
+});

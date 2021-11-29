@@ -156,6 +156,35 @@ const BookController = (app, db) => {
       });
     }
   });
+
+  app.delete('/api/book/:id', async (req, res) => {
+    const id = parseInt(req.params.id);
+
+    try {
+      const book = await DAO.getBookById(id);
+      
+      if (!book) {
+        res.status(404).json({
+          error: true,
+          msg: `The book with ID ${id} was not found`,
+        });
+        return;
+      }
+
+      const deletedBookId = await DAO.deleteBook(id);
+
+      res.status(200).json({
+        error: false,
+        msg: 'Book was deleted successfully',
+        bookId: deletedBookId,
+      });
+    } catch (err) {
+      res.status(500).json({
+        error: true,
+        msg: err.message,
+      });
+    }
+  });
 }
 
 module.exports = BookController;

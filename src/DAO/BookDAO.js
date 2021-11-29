@@ -104,6 +104,24 @@ class BookDAO {
       });
     });
   }
+
+  deleteBook(id) {
+    return new Promise((resolve, reject) => {
+      const query = `
+        DELETE FROM livro
+        WHERE id_livro = ?;
+      `;
+
+      this._db.run(query, id, (err) => {
+        if (err) {
+          reject(new Error(`Error deleting book: ${err.message}`));
+          return;
+        }
+
+        resolve(id);
+      });
+    });
+  }
 }
 
 module.exports = BookDAO;
