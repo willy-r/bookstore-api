@@ -25,10 +25,7 @@ const createDatabase = (isTesting) => {
   // Creates tables if not exists.
   const tables = new Tables(db);
   tables.createTables();
-
-  if (isTesting) {
-    tables.populateTables();
-  }
+  tables.populateTables();
 
   // Finishes connection with database when CTRL + C.
   process.on('SIGINT', () => {
