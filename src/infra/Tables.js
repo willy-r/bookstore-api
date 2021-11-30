@@ -14,11 +14,11 @@ class Tables {
   _createBookTable() {
     this._db.run(schemas.createBookTable, (err) => {
       if (err) {
-        console.log(`Error creating book table: ${err.message}`);
+        console.log(`Error creating livro table: ${err.message}`);
         return;
       }
 
-      console.log('The book table has been created (or already exists) successfully!');
+      console.log('The livro table has been created (or already exists) successfully!');
     });
   }
 
@@ -31,11 +31,11 @@ class Tables {
   _populateBookTable() {
     this._db.run(schemas.populateBookTable, (err) => {
       if (err) {
-        console.log(`Error populating book table: ${err.message}`);
+        console.log(`Error populating livro table: ${err.message}`);
         return;
       }
 
-      console.log('The book table has been populated successfully!');
+      console.log('The livro table has been populated successfully!');
     });
   }
 }

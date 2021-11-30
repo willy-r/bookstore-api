@@ -7,14 +7,13 @@ const createDatabase = require('../infra/db');
 const customExpress = (isTesting) => {
   const app = express();
   const corsOptions = {
-    origin: [/localhost/],
+    origin: [/localhost/, /bs-api-rest.herokuapp/],
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   };
 
   // Middlewares.
   app.use(cors(corsOptions));
   app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
 
   // Database.
   const db = createDatabase(isTesting);

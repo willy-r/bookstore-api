@@ -1,7 +1,13 @@
 const request = require('supertest');
 
-const { app, deleteDatabase, validBook } = require('./testsConfig');
+const customExpress = require('../config/customExpress');
+const { deleteDatabase, validBook } = require('./utils');
 
+// Creates the app passing true as argument,
+// meaning that should create the test db.
+const app = customExpress(true);
+
+// After all tests the database is deleted.
 afterAll(() => {
   deleteDatabase();
 });

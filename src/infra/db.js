@@ -22,7 +22,7 @@ const createDatabase = (isTesting) => {
     console.log(`Creates database on: ${dbFullFilePath}`);
   });
 
-  // Creates tables if not exists.
+  // Creates tables if not exists, and populate them.
   const tables = new Tables(db);
   tables.createTables();
   tables.populateTables();

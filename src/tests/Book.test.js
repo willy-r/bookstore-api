@@ -1,6 +1,6 @@
 const Book = require('../models/Book');
 
-const { validBook } = require('./testsConfig');
+const { validBook } = require('./utils');
 
 describe('Creating new books', () => {
   test('Should create a valid instance of Book', () => {
