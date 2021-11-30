@@ -92,9 +92,9 @@ const BookController = (app, db) => {
     const body = { ...req.body };
     
     try {
-      const book = await DAO.getBookById(id);
+      const oldBook = await DAO.getBookById(id);
       
-      if (!book) {
+      if (!oldBook) {
         res.status(404).json({
           error: true,
           msg: `The book with ID ${id} was not found`,
@@ -104,21 +104,22 @@ const BookController = (app, db) => {
       
       // Try to create an instance of Book.
       const newBook = new Book(
-        body.ISBN ? body.ISBN : book.ISBN,
-        body.titulo ? body.titulo : book.titulo,
-        body.descricao ? body.descricao : book.descricao,
-        body.url_img ? body.url_img : book.url_img,
-        body.preco ? body.preco : book.preco,
-        body.paginas ? body.paginas : book.paginas,
-        body.ano_publicacao ? body.ano_publicacao : book.ano_publicacao,
-        book.id_editora,
-        book.id_autor,
+        body.ISBN || oldBook.ISBN,
+        body.titulo || oldBook.titulo,
+        body.descricao || oldBook.descricao,
+        body.url_img || oldBook.url_img,
+        body.preco || oldBook.preco,
+        body.paginas || oldBook.paginas,
+        body.ano_publicacao || oldBook.ano_publicacao,
+        // Not required, uses the same.
+        oldBook.id_editora,
+        oldBook.id_autor
       );
 
       try {
         const ISBN = await DAO.getBookISBN(newBook.ISBN);
 
-        if (ISBN && ISBN !== book.ISBN) {
+        if (ISBN && ISBN !== oldBook.ISBN) {
           res.status(400).json({
             error: true,
             msg: `The book with ISBN ${ISBN} already exists`,
