@@ -6,8 +6,8 @@ const createDatabase = require('../infra/db');
 
 const customExpress = (isTesting) => {
   const app = express();
-  const corsOptions = {
-    origin: [/localhost/, /bs-api-rest.herokuapp/],
+  // All routes are public, anyone can acess from anywhere.
+  const corsOptions = { 
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
   };
 
