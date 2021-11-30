@@ -9,7 +9,7 @@ A bookstore API REST built with NodeJS and Express (Book entity). This the proje
 
 ## API Routes Reference
 
-To see the full **API Reference**, access the [wiki](#todo) of the project.
+To see the full **API Reference**, access the [wiki](https://github.com/willy-r/bookstore-api/wiki) of the project.
 
 ### Routes (Book entity)
 
@@ -73,6 +73,7 @@ Start the local server:
 npm run dev
 ```
 
+> This will create the server, database and populate with initial data.
 
 ## Running Tests
 
