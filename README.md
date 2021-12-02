@@ -7,6 +7,11 @@
 A bookstore API REST built with NodeJS and Express (Book entity). This the project of the module 4 for Resilia that consists to create an API REST about a book of a virtual bookstore.
 
 
+## Demo (Simple dashboard with CRUD)
+
+- https://willy-r.github.io/bookstore-frontend/
+
+
 ## API Routes Reference
 
 To see the full **API Reference**, access the [wiki](https://github.com/willy-r/bookstore-api/wiki) of the project.
